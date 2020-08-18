@@ -91,4 +91,28 @@ public class CensusAnalyserTest {
         }
     }
 
+    @Test
+    public void givenIndiaStateCode_WhenDelimiterIncorrect_ShouldThrowException() {
+        try{
+            CensusAnalyser censusAnalyser = new CensusAnalyser();
+            ExpectedException exceptionRule = ExpectedException.none();
+            exceptionRule.expect(CensusAnalyserException.class);
+            censusAnalyser.loadIndiaCensusData(SAMPLE);
+        }catch(CensusAnalyserException  e){
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.NOT_A_CSV_TYPE_OR_HEADERS_INVALID,e.type);
+        }
+    }
+
+    @Test
+    public void givenIndiaStateCode_WhenHeaderIncorrect_ShouldThrowException() {
+        try{
+            CensusAnalyser censusAnalyser = new CensusAnalyser();
+            ExpectedException exceptionRule = ExpectedException.none();
+            exceptionRule.expect(CensusAnalyserException.class);
+            censusAnalyser.loadIndiaCensusData(SAMPLE);
+        }catch(CensusAnalyserException  e){
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.NOT_A_CSV_TYPE_OR_HEADERS_INVALID,e.type);
+        }
+    }
+
 }
