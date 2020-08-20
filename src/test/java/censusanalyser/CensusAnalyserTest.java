@@ -160,4 +160,15 @@ public class CensusAnalyserTest {
             Assert.assertEquals("Sikkim", censusCSV[0].state);
         }catch (CensusAnalyserException e ) { }
     }
+
+    @Test
+    public void givenIndianStateCensus_WhenSortedOnStatePopulationDensity_ShouldReturnSortedResult() {
+        try{
+            CensusAnalyser censusAnalyser = new CensusAnalyser();
+            censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
+            String sortedCensusData = censusAnalyser.getStatePopulationDensityWiseSortedsetsData();
+            IndiaCensusCSV[] censusCSV =  new Gson().fromJson(sortedCensusData, IndiaCensusCSV[].class);
+            Assert.assertEquals("Sikkim", censusCSV[0].state);
+        }catch (CensusAnalyserException e ) { }
+    }
 }
