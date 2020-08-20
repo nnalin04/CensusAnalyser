@@ -146,7 +146,18 @@ public class CensusAnalyserTest {
             censusAnalyser.loadIndiaStateCode(INDIA_STATE_CODE_CSV_FILE_PATH);
             String sortedCensusData = censusAnalyser.getStateCodeWiseSortedsetsData();
             IndiaStateCodeCSV[] censusCSV =  new Gson().fromJson(sortedCensusData, IndiaStateCodeCSV[].class);
-            Assert.assertEquals("AD", censusCSV[0].stateCode);
+            Assert.assertEquals("AD", censusCSV[3].stateCode);
+        }catch (CensusAnalyserException e ) { }
+    }
+
+    @Test
+    public void givenIndianStateCensus_WhenSortedOnStatePopulation_ShouldReturnSortedResult() {
+        try{
+            CensusAnalyser censusAnalyser = new CensusAnalyser();
+            censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
+            String sortedCensusData = censusAnalyser.getStatePopulationWiseSortedsetsData();
+            IndiaCensusCSV[] censusCSV =  new Gson().fromJson(sortedCensusData, IndiaCensusCSV[].class);
+            Assert.assertEquals("Sikkim", censusCSV[0].state);
         }catch (CensusAnalyserException e ) { }
     }
 }
