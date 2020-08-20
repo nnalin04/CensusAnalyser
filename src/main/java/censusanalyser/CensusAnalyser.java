@@ -59,6 +59,13 @@ public class CensusAnalyser {
         return sortedStateCensusJson;
     }
 
+    public String getStateCodeWiseSortedsetsData() {
+        Comparator<IndiaStateCodeCSV> censusComparator = Comparator.comparing(census -> census.stateCode);
+        stateCSVList = this.sort(stateCSVList, censusComparator);
+        String sortedStateCensusJson = new Gson().toJson(stateCSVList);
+        return sortedStateCensusJson;
+    }
+
     private static <E> List<E> sort(List<E> censusList, Comparator<E> censusComparator) {
         for (int i = 0; i < censusList.size()-1; i++) {
             for (int j =0; j< censusList.size() -i -1; j++) {
