@@ -168,7 +168,7 @@ public class CensusAnalyserTest {
             censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
             String sortedCensusData = censusAnalyser.getStatePopulationDensityWiseSortedsetsData();
             IndiaCensusCSV[] censusCSV =  new Gson().fromJson(sortedCensusData, IndiaCensusCSV[].class);
-            Assert.assertEquals("Sikkim", censusCSV[0].state);
+            Assert.assertEquals("Arunachal Pradesh", censusCSV[0].state);
         }catch (CensusAnalyserException e ) { }
     }
 
