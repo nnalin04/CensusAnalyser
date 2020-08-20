@@ -73,6 +73,12 @@ public class CensusAnalyser {
         return sortedStateCensusJson;
     }
 
+    public String getStatePopulationDensityWiseSortedsetsData() {
+        Comparator<IndiaCensusCSV> censusComparator = Comparator.comparing(census -> census.densityPerSqKm);
+        censusCSVList = this.sort(censusCSVList, censusComparator);
+        String sortedStateCensusJson = new Gson().toJson(censusCSVList);
+        return sortedStateCensusJson;
+    }
 
     private static <E> List<E> sort(List<E> censusList, Comparator<E> censusComparator) {
         for (int i = 0; i < censusList.size()-1; i++) {
