@@ -197,4 +197,26 @@ public class CensusAnalyserTest {
             Assert.assertEquals(51,numOfRecords);
         } catch (CensusAnalyserException e) { }
     }
+
+    @Test
+    public void givenUSCensusData_WhenSortedOnStateCode_ShouldReturnSortedResult() {
+        try{
+            CensusAnalyser censusAnalyser = new CensusAnalyser();
+            censusAnalyser.loadUSCensusData(US_CENSUS_CSV_FILE_PATH);
+            String sortedCensusData = censusAnalyser.getStateCodeWiseSortedsetsData();
+            USCensusCSV[] censusCSV =  new Gson().fromJson(sortedCensusData, USCensusCSV[].class);
+            Assert.assertEquals("AL", censusCSV[3].stateId);
+        }catch (CensusAnalyserException e ) { }
+    }
+
+    @Test
+    public void givenUSCensusData_WhenSortedOnStatePopulation_ShouldReturnSortedResult() {
+        try{
+            CensusAnalyser censusAnalyser = new CensusAnalyser();
+            censusAnalyser.loadUSCensusData(US_CENSUS_CSV_FILE_PATH);
+            String sortedCensusData = censusAnalyser.getStatePopulationWiseSortedsetsData();
+            USCensusCSV[] censusCSV =  new Gson().fromJson(sortedCensusData, USCensusCSV[].class);
+            Assert.assertEquals("Wyoming", censusCSV[0].state);
+        }catch (CensusAnalyserException e ) { }
+    }
 }
