@@ -241,4 +241,20 @@ public class CensusAnalyserTest {
             Assert.assertEquals("District of Columbia", censusCSV[0].state);
         }catch (CensusAnalyserException e ) { }
     }
+
+    @Test
+    public void givenIndianAndUSCensusData_WhenSortedOnStatePopulation_ShouldReturnSortedResult() {
+        try{
+            CensusAnalyser censusAnalyser = new CensusAnalyser();
+            censusAnalyser.loadUSCensusData(US_CENSUS_CSV_FILE_PATH);
+            String sortedUSCensusData = censusAnalyser.getStatePopulationWiseSortedsetsData();
+            USCensusCSV[] USCensusCSV =  new Gson().fromJson(sortedUSCensusData, USCensusCSV[].class);
+            Assert.assertEquals("Wyoming", USCensusCSV[0].state);
+            censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
+            censusAnalyser.loadIndiaStateCode(INDIA_STATE_CODE_CSV_FILE_PATH);
+            String sortedIndiaCensusData = censusAnalyser.getStatePopulationWiseSortedsetsData();
+            IndiaCensusCSV[] indiaCensusCSV =  new Gson().fromJson(sortedIndiaCensusData, IndiaCensusCSV[].class);
+            Assert.assertEquals("Sikkim", indiaCensusCSV[0].state);
+        }catch (CensusAnalyserException e ) { }
+    }
 }
