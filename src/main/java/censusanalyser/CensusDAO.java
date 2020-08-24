@@ -14,6 +14,9 @@ public class IndiaCensusDAO {
         population = indiaCensusCSV.population;
     }
 
+    public IndiaCensusDAO(USCensusCSV censusCSV) {
+    }
+
     public IndiaCensusCSV getIndiaCensusCSV(){
         return new IndiaCensusCSV(state, population, densityPerSqKm, areaInSqKm);
     }

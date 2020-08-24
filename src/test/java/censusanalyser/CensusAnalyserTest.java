@@ -12,6 +12,7 @@ public class CensusAnalyserTest {
     private static final String WRONG_CSV_TYPE = "./src/test/resources/wrongFile.txt";
     private static final String SAMPLE = "./src/test/resources/SampleForHeaderAndDelimiter.csv";
     private static final String INDIA_STATE_CODE_CSV_FILE_PATH = "./src/test/resources/IndiaStateCode.csv";
+    private static final String US_CENSUS_CSV_FILE_PATH = "./src/test/resources/USCensusData.csv";
 
     @Test
     public void givenIndianCensusCSVFileReturnsCorrectRecords() {
@@ -141,6 +142,18 @@ public class CensusAnalyserTest {
     }
 
     @Test
+    public void givenIndianStateCode_WhenSortedOnStateCode_ShouldReturnSortedResult() {
+        try{
+            CensusAnalyser censusAnalyser = new CensusAnalyser();
+            censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
+            censusAnalyser.loadIndiaStateCode(INDIA_STATE_CODE_CSV_FILE_PATH);
+            String sortedCensusData = censusAnalyser.getStateCodeWiseSortedsetsData();
+            IndiaStateCodeCSV[] censusCSV =  new Gson().fromJson(sortedCensusData, IndiaStateCodeCSV[].class);
+            Assert.assertEquals("AD", censusCSV[3].stateCode);
+        }catch (CensusAnalyserException e ) { }
+    }
+
+    @Test
     public void givenIndianStateCensus_WhenSortedOnStatePopulation_ShouldReturnSortedResult() {
         try{
             CensusAnalyser censusAnalyser = new CensusAnalyser();
@@ -174,5 +187,14 @@ public class CensusAnalyserTest {
             IndiaCensusCSV[] censusCSV =  new Gson().fromJson(sortedCensusData, IndiaCensusCSV[].class);
             Assert.assertEquals("Goa", censusCSV[0].state);
         }catch (CensusAnalyserException e ) { }
+    }
+
+    @Test
+    public void givenUSCensusData_ShouldReturnsCorrectRecords() {
+        try {
+            CensusAnalyser censusAnalyser = new CensusAnalyser();
+            int numOfRecords = censusAnalyser.loadUSCensusData(US_CENSUS_CSV_FILE_PATH);
+            Assert.assertEquals(51,numOfRecords);
+        } catch (CensusAnalyserException e) { }
     }
 }
