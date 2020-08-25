@@ -7,7 +7,7 @@ public class IndiaStateCodeCSV {
     @CsvBindByName(column = "State", required = true)
     public String stateName;
 
-    @CsvBindByName(column = "Population", required = true)
+    @CsvBindByName(column = "StateCode", required = true)
     public String stateCode;
 
     @Override

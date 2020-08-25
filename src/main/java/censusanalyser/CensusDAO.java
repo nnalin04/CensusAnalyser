@@ -21,8 +21,4 @@ public class CensusDAO {
         populationDensity = censusCSV.populationDensity;
         population = censusCSV.population;
     }
-
-    public IndiaCensusCSV getIndiaCensusCSV(){
-        return new IndiaCensusCSV(state, population, (int) populationDensity, (int) totalArea);
-    }
 }
