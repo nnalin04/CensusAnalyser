@@ -16,7 +16,7 @@ public class CensusAnalyser {
         return censusStateMap.size();
     }
 
-    public String getStateCensusData(Comparator<CensusDAO>... comparators) {
+    public final String getStateCensusData(Comparator<CensusDAO>... comparators) {
         List<CensusDAO> censusDAOS;
         if (comparators.length == 1) {
             censusDAOS = censusStateMap.values().stream()

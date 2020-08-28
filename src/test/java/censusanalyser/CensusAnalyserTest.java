@@ -15,12 +15,11 @@ public class CensusAnalyserTest {
     private static final String US_CENSUS_CSV_FILE_PATH = "./src/test/resources/USCensusData.csv";
 
     @Test
-    public void givenIndianCensusCSVFile_ShouldReturnsCorrectRecords() {
-        try {
+    public void givenIndianCensusCSVFile_ShouldReturnsCorrectRecords() throws CensusAnalyserException {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
-            int numOfRecords = censusAnalyser.loadCensusData(CensusComparator.Country.INDIA, INDIA_CENSUS_CSV_FILE_PATH, INDIA_STATE_CODE_CSV_FILE_PATH);
+            int numOfRecords = censusAnalyser.loadCensusData(CensusComparator.Country.INDIA,
+                    INDIA_CENSUS_CSV_FILE_PATH, INDIA_STATE_CODE_CSV_FILE_PATH);
             Assert.assertEquals(29,numOfRecords);
-        } catch (CensusAnalyserException e) { }
     }
 
     @Test
