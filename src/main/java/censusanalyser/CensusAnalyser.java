@@ -71,6 +71,16 @@ public class CensusAnalyser {
         return sortedStateCensusJson;
     }
 
+    public String getStatePopulationWithDensitySortedsetsData() {
+        Comparator<CensusDAO> populationComparator = Comparator.comparing(census -> census.population);
+        Comparator<CensusDAO> populationDensityComparator = Comparator.comparing(census -> census.populationDensity);
+        List<CensusDAO> censusDAOS = censusStateMap.values().stream()
+                .collect(Collectors.toList());
+        this.sort(censusDAOS, populationComparator.thenComparing(populationDensityComparator));
+        String sortedStateCensusJson = new Gson().toJson(censusDAOS);
+        return sortedStateCensusJson;
+    }
+
     private void sort(List<CensusDAO> censusDAOS, Comparator<CensusDAO> censusComparator) {
         for (int i = 0; i < censusDAOS.size()-1; i++) {
             for (int j =0; j< censusDAOS.size() -i -1; j++) {

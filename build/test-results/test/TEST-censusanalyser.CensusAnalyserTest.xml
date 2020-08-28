@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="censusanalyser.CensusAnalyserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-08-28T06:00:55" hostname="EEE1407203" time="1.052">
+  <properties/>
+  <testcase name="givenUSCensusData_WhenSortedOnStatePopulationWithDensity_ShouldReturnSortedResult" classname="censusanalyser.CensusAnalyserTest" time="1.052"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
