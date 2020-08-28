@@ -46,11 +46,9 @@ public class CensusAnalyser {
 
     public String getStatePopulationWiseSortedsetsData() {
         Comparator<CensusDAO> censusComparator = Comparator.comparing(census -> census.population);
-        List<CensusDAO> censusDAOS = censusStateMap.values().stream()
-                .collect(Collectors.toList());
+        List<CensusDAO> censusDAOS = new ArrayList<>(censusStateMap.values());
         this.sort(censusDAOS, censusComparator);
-        String sortedStateCensusJson = new Gson().toJson(censusDAOS);
-        return sortedStateCensusJson;
+        return new Gson().toJson(censusDAOS);
     }
 
     public String getStatePopulationDensityWiseSortedsetsData() {
